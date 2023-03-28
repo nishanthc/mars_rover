@@ -1,3 +1,6 @@
+from helpers.constants import headings
+
+
 class Robot:
     """
     Represents a robot.
@@ -33,7 +36,7 @@ class Robot:
             raise TypeError("heading must be a string")
 
         # if heading is not either N E S W then raise n ValueError.
-        if heading not in ["N", "E", "S", "W"]:
+        if heading not in headings:
             raise ValueError("heading must either be N E S W")
 
         self.x: int = x
