@@ -8,7 +8,7 @@ class TestWorld(unittest.TestCase):
     Test cases for the World class.
     """
 
-    def test_integer_for_height_and_Width(self):
+    def test_integer_for_height_and_width(self):
         """
         Tests the initialisation of the World class with valid input parameters.
         """

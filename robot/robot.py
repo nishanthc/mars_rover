@@ -28,6 +28,10 @@ class Robot:
         if not isinstance(y, int):
             raise TypeError("y must be an integer")
 
+        # if heading is not a String then return a TypeError.
+        if not isinstance(heading, str):
+            raise TypeError("heading must be a string")
+
         # if heading is not either N E S W then raise n ValueError.
         if heading not in ["N", "E", "S", "W"]:
             raise ValueError("heading must either be N E S W")
