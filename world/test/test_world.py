@@ -21,6 +21,12 @@ class TestWorld(unittest.TestCase):
         Tests the initialization of the World class with invalid input parameters.
         """
 
+        # width and height less than 1
+        with self.assertRaises(ValueError):
+            World(0, 1)
+        with self.assertRaises(ValueError):
+            World(1, 0)
+
         # String for width and height
         with self.assertRaises(TypeError):
             World("invalid", 4)
