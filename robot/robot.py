@@ -1,4 +1,5 @@
 from helpers.constants import headings
+from world.world import World
 
 
 class Robot:
@@ -13,6 +14,9 @@ class Robot:
     Methods:
     __init__(x, y, heading): Initializes a new instance of the Robot class with the given x and y
      positions and heading.
+
+    move(world, commands): Returns if the move was sucessful with either the final position
+    or the last possible position.
     """
 
     def __init__(self, x: int, y: int, heading: str):
@@ -42,3 +46,14 @@ class Robot:
         self.x: int = x
         self.y: int = y
         self.heading: str = heading
+        self.last_valid_position: tuple = None
+
+    def move(self, world: World, commands: list):
+        """
+        Initializes a new instance of the Robot class with the given x, y and heading.
+
+        Args:
+        world (World): An instance of the world that the commands should be performed on.
+        commands (list): A list of commands to be performed by the robot.
+        """
+        pass
