@@ -10,3 +10,5 @@ if __name__ == "__main__":
         print("Enter robot initial position and commands (e.g : '(2, 3, E) LFRFF' ) :")
         initial_position, commands = parse_initial_position_and_commands(input())
         robot = Robot(*initial_position)
+        on_map, position = robot.move(world=world, commands=commands)
+        print(position, "LOST" if not on_map else "")

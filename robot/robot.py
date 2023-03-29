@@ -1,4 +1,5 @@
 from helpers.constants import headings
+from helpers.navigation import find_heading_after_turn, find_position_after_forward_move
 from world.world import World
 
 
@@ -48,12 +49,56 @@ class Robot:
         self.heading: str = heading
         self.last_valid_position: tuple = None
 
+    def initial_position_check(self, world: World):
+        """
+        Checks if the starting position of the robot is valid for the world it's being placed on
+
+        Args:
+        world (World): An instance of the world that the commands should be performed on.
+
+        :Returns
+        boolean: True or False depending on if the check is successful or not
+
+        """
+        if (self.x > world.width or self.x < 0) or 0 > (
+            self.y > world.height or self.y < 0
+        ):
+            return False
+        else:
+            return True
+
     def move(self, world: World, commands: list):
         """
-        Initializes a new instance of the Robot class with the given x, y and heading.
+        Attempts to run the commands for the robot on a given world.
 
         Args:
         world (World): An instance of the world that the commands should be performed on.
         commands (list): A list of commands to be performed by the robot.
+
+          :Returns
+          boolean: success state
+          Tuple: The latest position of the robot
+
+
         """
-        pass
+        if self.initial_position_check(world=world):
+            on_map = True
+            for command in commands:
+                if on_map:
+                    if command in ["L", "R"]:
+                        self.heading = find_heading_after_turn(
+                            turn=command, current_heading=self.heading
+                        )
+                    if command == "F":
+                        (
+                            on_map,
+                            self.x,
+                            self.y,
+                            self.heading,
+                        ) = find_position_after_forward_move(
+                            x=self.x, y=self.y, heading=self.heading, world=world
+                        )
+            return on_map, (self.x, self.y, self.heading)
+
+        else:
+            raise ValueError("The robot cannot be placed in the world")
