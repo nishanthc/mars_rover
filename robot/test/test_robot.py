@@ -99,7 +99,7 @@ class TestRobot(unittest.TestCase):
         robot = Robot(0, 0, "W")
         on_map, position = robot.move(world=world, commands="F")
         self.assertEqual(on_map, False)
-        self.assertEqual(position, (0, 0, "E"))
+        self.assertEqual(position, (0, 0, "W"))
 
         robot = Robot(0, 0, "N")
         on_map, position = robot.move(world=world, commands="FFFFF")
